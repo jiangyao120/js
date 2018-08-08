@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {  padding: 0;
+             margin:0;
+             list-style: none;
+        }
+        #wrapper{
+            width: 800px;
+            height: 800px;
+        }
+        #list li{
+            height: 50px;
+            line-height: 50px;
+            width: 800px;
+            margin-bottom: 20px;
+            
+            font-size: 14px;
+        }
+        .red{
+            background:#eee;
+        }
+        .blue{
+            background: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <p>todolist</p>
+        <div>
+            名称：<input type="text">
+            价格：<input type="text">
+            <input type="text">
+        </div>
+        <form action="" id="list">
+                <ul>
+                             <li v-for='(arg) in arg' name='index'  @click='foo()' :class="[arg.isRed? 'red':'']" >
+                            <input type="checkbox" v-model='cost' v-bind:value='arg.cost'> {{arg.cloth}}
+                             <span>{{arg.cost}}</span></li>
+                       
+                    </ul>
+                    <button>删除选中</button>
+                    <span>总价：{{cost}}</span>
+        </form>
+       
+        
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+            new Vue({
+                el:list,
+                data:{
+                    
+                    arg:[{
+                        cloth:'衣服',
+                        cost:5,
+                        isRed:true,
+                        
+                        
+                    },
+                    {
+                        cloth:'裤子',
+                        cost:500,
+                        isRed:true,
+                        
+                        
+                    },
+                    {
+                        cloth:'电脑',
+                        cost:8888,
+                        isRed:true,
+                        
+                        value:'555'
+                    },
+                    {
+                        cloth:'鞋',
+                        cost:88,
+                        isRed:true,
+                       
+                        value:'555'
+                    },
+                    {
+                        cloth:'ipone',
+                        cost:5555,
+                        isRed:true,
+                       
+                        value:'555'
+                    }
+                ],
+                    cost:[],
+             },
+                methods:{
+                    foo(){
+                     this.arg[isRed]=!this.arg[isRed];
+                    }
+                }
+            })
+    </script>
+
+</body>
+</html>
