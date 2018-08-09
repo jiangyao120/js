@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
     <style>
         * {  padding: 0;
              margin:0;
@@ -28,25 +30,31 @@
         .blue{
             background: #ff0;
         }
+        
     </style>
 </head>
 <body>
-    <div id="wrapper">
+    <div id="wrapper" @submit prevent class="text-center">
         <p>todolist</p>
+        <p><input type="text" v-model='key' value="index">
+        <button type="submit"  @click='select'>搜索</button></p>
         <div>
-            名称：<input type="text">
-            价格：<input type="text">
-            <input type="text">
+            名称：<input v-model='cloth' type="text">
+            价格：<input v-model.number='cost' type="number">
+            <button type="submit" @click='add'>添加</button>
+            
         </div>
         <form action="" id="list">
                 <ul>
-                             <li v-for='(arg) in arg' name='index'  @click='foo()' :class="[arg.isRed? 'red':'']" >
-                            <input type="checkbox" v-model='cost' v-bind:value='arg.cost'> {{arg.cloth}}
-                             <span>{{arg.cost}}</span></li>
+                             <li  v-for='(mu,index) in arg' name='index'  @click='foo(mu)' :class="[mu.isRed? 'red':'blue']" >
+                            <input type="checkbox" v-model="checkedList" :value="index"> 
+                            {{mu.cloth}}
+                             <span>{{mu.cost}}</span>
+                            <button @click='redu(index)' type="button"  class="btn btn-warning glyphicon glyphicon-remove btn-xs"></button></li>
                        
                     </ul>
-                    <button>删除选中</button>
-                    <span>总价：{{cost}}</span>
+                    <button @click='redus' type="button" >删除选中</button>
+                    <span>总价：{{num}}</span>
         </form>
        
         
@@ -55,50 +63,102 @@
     <script>
 
             new Vue({
-                el:list,
+                el:'#wrapper',
                 data:{
                     
                     arg:[{
                         cloth:'衣服',
                         cost:5,
-                        isRed:true,
+                        isRed:false,
                         
                         
                     },
                     {
                         cloth:'裤子',
                         cost:500,
-                        isRed:true,
+                        isRed:false,
                         
-                        
+
                     },
                     {
                         cloth:'电脑',
                         cost:8888,
-                        isRed:true,
+                        isRed:false,
                         
-                        value:'555'
+                        
                     },
                     {
                         cloth:'鞋',
                         cost:88,
-                        isRed:true,
+                        isRed:false,
                        
-                        value:'555'
+                        
                     },
                     {
                         cloth:'ipone',
                         cost:5555,
-                        isRed:true,
-                       
-                        value:'555'
+                        isRed:false,
                     }
                 ],
-                    cost:[],
+                cost:0,
+                checkedList:[],
+                cloth:'',
+                key:'',
+              
+                    
              },
                 methods:{
-                    foo(){
-                     this.arg[isRed]=!this.arg[isRed];
+                    foo(xx){
+                    xx.isRed=!xx.isRed;
+                    },
+                    redu(index){    //return 只能返回已有的值
+                        this.arg.splice(index,1);
+                        
+                    },
+                    redus(){
+                        this.arg = this.arg.filter((elem, index) => {
+                        if (!this.checkedList.includes(index)) {
+                            return elem;
+                        }
+                    });
+                    this.checkedList = [];
+                      
+                    },
+                    add(){
+                            this.arg.push({
+                               cloth:this.cloth,
+                               cost:this.cost,
+                                isRed:false
+                            })
+                            this.cloth='';
+                            this.cost=0;
+
+                    },
+                    select(){
+                        this.arg=this.arg.filter((elem,index)=>{
+                            if(elem.cloth.includes(this.key)){
+                                return elem;
+                            }
+                        })
+                    }
+
+                },
+                computed:{
+                    num(){
+                        let sum =0;
+                       this.arg.forEach(mu => {
+                            if(mu.isRed){
+                                sum+=mu.cost;
+                            }
+                        });
+                        return sum;
+                    //   return this.arg.reduce((n,mu)=>{
+                    //       if(mu.isRed){
+                    //           n += parseInt(mu.cost);
+                    //       }
+                    //     //   console.log(mu.cost);
+                    //       return n;
+                    //    },0);
                     }
                 }
             })
