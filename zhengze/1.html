@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function execReg(reg,str){
+ var result = reg.exec(str);
+ alert(result);
+}
+// 我们使用下面的函数来做匹配正则的练习：
+// 函数接受一个
+        // let reg=/(b)(g)\1\2/;
+        // str='bgbbhgg';
+        // execReg(reg,str);
+        // let reg=/(a)(s)(d)\2\3\1/;
+        // str='sdaasdsda'
+        // execReg(reg,str);
+        // let reg=/^(b|c).*/;
+        // str='bsdahka';
+        // execReg(reg,str);
+        reg = /cainiao(?=8)/;
+str='cainiao9';
+execReg(reg,str);
+reg = /cainiao(?=8)/
+        </script>
+</body>
+</html>

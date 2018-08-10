@@ -7,17 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="div1" v-text='mrg2'></div>
-    <div>{{mrg}}</div>
+    <div id="suv">
+        <div v-for='ele,index' in arr></div>
+        <div></div>
+    </div>
+    <!-- <div id="div1" v-text='mrg2'></div>
+    <div>{{mrg}}</div> -->
     <script src="vue.js"></script>
     <script>
-            let vs=new Vue({
-                el: '#div1',
+            // let vs=new Vue({
+            //     el: '#div1',
+            //     data:{
+            //         mrg:'hello world',
+            //         mrg2:'hello'
+            //     }
+            // });
+            let va=new Vue({
+                el:suv,
                 data:{
-                    mrg:'hello world',
-                    mrg2:'hello'
+
                 }
-            });
+            })
     </script>
 </body>
 </html>
