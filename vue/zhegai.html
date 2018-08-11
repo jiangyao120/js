@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+        }
+
+            .mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, .5);
+        }
+
+            .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+        }
+
+        
+
+     
+    
+    
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+            <button @click='right=true'>登陆</button>
+            <my-name v-show='right' @close='right=false' >
+                   
+                   <form action="" slot='content'>
+                       <p> zhanghao  <input type="text"></p>
+                       <p> miam  <input type="text"></p>
+                       <p> youxiang <input type="text"></p>
+                       <p> youxiang <input type="text"></p>
+                       <p> youxiang <input type="text"></p>
+                   </form>
+                </my-name>
+            </div>
+                <template id="show">
+                    <div class="mask">
+                        <div class="box">
+                                
+                                <div class="content">
+                                        <slot name="content"></slot>
+                                </div>
+                                <div  @click="$emit('close')">[x]</div>
+                        </div>
+                    </div>
+                </template>
+   
+  
+    
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                right:false,
+            },
+            components: {
+                'my-name':{
+                    template:'#show',
+                }
+            }
+            
+        })
+         </script>
+</body>
+</html>
