@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div slot='tital'>aa</div>
+        <div slot='body'>
+            bb
+            <input type="text">cc
+            <input type="text">
+        </div>
+
+
+    </div>
+    <template id="my">
+        <h1>
+            <slot name="tital"></slot>
+        </h1>
+        <form action="">
+            <slot name="body"></slot>
+        </form>
+    </template>
+    <script src="vue.js"></script>
+    <script>
+    new Vue({
+        el:'#app',
+        components:{
+            myself:{
+                template:'#my'
+            }
+        }
+    })
+    
+    
+    
+    </script>
+</body>
+</html>
